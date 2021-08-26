@@ -15,6 +15,7 @@ router.post("/applications/newIndividual", (req, res) => {
     })
     .catch(function (error) {
       // handle error
+      console.log(error);
       res
         .json({
           message: error.message,
@@ -31,6 +32,7 @@ router.post("/getAccountID", (req, res) => {
     })
     .catch(function (error) {
       // handle error
+      console.log(error);
       res.json(error).status(400);
     });
 });
