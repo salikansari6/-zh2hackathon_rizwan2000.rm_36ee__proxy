@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const zetaRoutes = require("./routes/zeta");
+
 require("dotenv").config();
 
 app.use(cors());
@@ -15,7 +16,7 @@ app.listen(PORT, () => {
 
 app.use(`/`, zetaRoutes);
 
-app.get("/", () => {
+app.get("/", (req, res) => {
   res.json({
     message: "Welcome to ZETA proxy",
   });
