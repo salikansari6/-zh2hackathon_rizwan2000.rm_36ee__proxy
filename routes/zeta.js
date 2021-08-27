@@ -5,6 +5,7 @@ const {
   createAccountHolder,
   assignBundleToAccountHolder,
   transferMoney,
+  getBalance,
 } = require("../axios/index");
 
 router.post("/applications/newIndividual", (req, res) => {
@@ -41,13 +42,23 @@ router.post("/transfer", (req, res) => {
   transferMoney(req.body)
     .then(function (response) {
       // handle success
-      console.log(response);
-      res.json(response.data);
+      if (response.status === 200) {
+        res.json(response.data).status(200);
+      } else {
+        res.json(response.data).status(403);
+      }
     })
+
     .catch(function (error) {
       // handle error
-      res.json(error);
+      res.json(error).status(400);
     });
+});
+
+router.get("/accounts/:accountID/balance", (req, res) => {
+  getBalance(req.params.accountID).then((response) => {
+    res.send(response.data);
+  });
 });
 
 module.exports = router;

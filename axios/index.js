@@ -19,6 +19,8 @@ module.exports = {
   transferMoney(payload) {
     return AxiosInstance.post("/transfers", payload);
   },
-
+  getBalance(accountID) {
+    return AxiosInstance.get(`/accounts/${accountID}/balance`);
+  },
   // For passing the money from us (middleman) to the provider
 };
