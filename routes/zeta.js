@@ -42,6 +42,8 @@ router.post("/transfer", (req, res) => {
   transferMoney(req.body)
     .then(function (response) {
       // handle success
+      console.log(response.status);
+      console.log(response.data);
       if (response.status === 200) {
         res.json(response.data).status(200);
       } else {
@@ -50,6 +52,7 @@ router.post("/transfer", (req, res) => {
     })
 
     .catch(function (error) {
+      console.log(error);
       // handle error
       res.json(error).status(400);
     });
